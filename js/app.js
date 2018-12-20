@@ -14,9 +14,7 @@ let placar = document.querySelector(".moves");
 let novaCarta;
 let cliquesDados = document.querySelector(".cliquesdados");
 let clickmoves = 0;
-let placarEstrelas = document.querySelector(".stars")
 let pontos = 0;
-let estrela;
 let jogadasErradas = document.querySelector(".jogadas-erradas")
 let pontuacao = document.querySelector(".pontos");
 const play = document.querySelector(".play");
@@ -25,48 +23,43 @@ restartButton.addEventListener("click", function(){
     location.reload();
 })
 
-play.addEventListener("click", function(){
-})
 
 /*  Cria todos os cards no tabuleiro  */
-    for(let c = 0; c < cardsMemory.length; c++){
+for(let c = 0; c < cardsMemory.length; c++){
       novaCarta = document.createElement("li");
       novaCarta.classList.add("card");
       novaCarta.innerHTML = "<i class='" + cardsMemory[c] + "'></i>";
       mesaCards.appendChild(novaCarta);
-
-
-    /* Ouvinte de evento para virar o card */
-    novaCarta.addEventListener("click", virarCard);
-    }
+/* Ouvinte de evento para virar o card */
+novaCarta.addEventListener("click", virarCard);
+}
 
 
 /* Função para virar o card */
-    function virarCard() {
-        if(congelatabuleiro) {
-        return
-      };
-        if(this === primeiroCard) {
-            return;
-        }
-        if(cardsAbertos.length === 0){
-            this.classList.add("animated", "tada", "open", "show");
-            primeiroCard = this;
-            cardsAbertos.push(this);
-        } else {
-            this.classList.add("animated", "tada", "open", "show");
-            segundoCard = this;
-            cardsAbertos.push(this);
-            comparaCards();
-            contaMovimentos();
-        }
-
-         mensagemFinal();
+function virarCard() {
+    if(congelatabuleiro) {
+    return
+  };
+    if(this === primeiroCard) {
+        return;
     }
-    
+    if(cardsAbertos.length === 0){
+        this.classList.add("animated", "tada", "open", "show");
+        primeiroCard = this;
+        cardsAbertos.push(this);
+    } else {
+        this.classList.add("animated", "tada", "open", "show");
+        segundoCard = this;
+        cardsAbertos.push(this);
+        comparaCards();
+        contaMovimentos();
+    }
+
+}
+
 
 /* função para comparar os cards */
-    function comparaCards() {
+function comparaCards() {
       if(segundoCard.innerHTML === primeiroCard.innerHTML){
         congelaCards();
         pontos += 5;
@@ -76,29 +69,29 @@ play.addEventListener("click", function(){
         desviraCards();
         pontos -= 2;
       };
-        
 }
     
 /* Reseta o array dos cards abertos e os cards clicados */
-    function reset(){
-        cardsAbertos = [];
-        primeiroCard = null;
-        segundoCard  = null
+function reset(){
+      cardsAbertos = [];
+      primeiroCard = null;
+      segundoCard  = null
 }
+
 /* função para travar os cards que formam par */
-    function congelaCards() {
+function congelaCards() {
       cardsAbertos.forEach(formaPar);
       reset();
-    }
+}
 
-    function formaPar(element) {
+function formaPar(element) {
       element.classList.add("match");
       element.removeEventListener("click", virarCard);
-    }
+}
 
 
 /* desvira os cards diferentes */
-    function desviraCards() {
+function desviraCards() {
       congelatabuleiro = true;
       setTimeout(function() {
         primeiroCard.classList.remove("animated", "tada", "open", "show");
@@ -106,16 +99,15 @@ play.addEventListener("click", function(){
         congelatabuleiro = false;
         reset()},
         900)
-
-    }
+}
 
 
 /* Contador de movimentos */
 function contaMovimentos() {
-    clickmoves +=1;
-    placar.innerHTML = `${clickmoves} `
-    jogadasErradas.innerHTML = `${paresErrados.length} `
-    pontuacao.innerHTML = `${pontos} `
+        clickmoves +=1;
+        placar.innerHTML = `${clickmoves} `
+        jogadasErradas.innerHTML = `${paresErrados.length} `
+        pontuacao.innerHTML = `${pontos} `
 }
 
 
@@ -123,7 +115,7 @@ function contaMovimentos() {
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
+    let currentIndex = array.length, temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
