@@ -7,9 +7,10 @@ shuffle(cardsMemory);
 const mesaCards = document.querySelector(".deck");
 let congelatabuleiro = false;
 let primeiroCard, segundoCard;
+let todosCards = document.querySelectorAll(".cards");
 let cardsAbertos = [];
 let paresErrados = [];
-let restartButton = document.querySelector(".restart");
+const restartButton = document.querySelector(".restart");
 let placar = document.querySelector(".moves");
 let novaCarta;
 let cliquesDados = document.querySelector(".cliquesdados");
@@ -17,12 +18,10 @@ let clickmoves = 0;
 let pontos = 0;
 let jogadasErradas = document.querySelector(".jogadas-erradas")
 let pontuacao = document.querySelector(".pontos");
-const play = document.querySelector(".play");
 
 restartButton.addEventListener("click", function(){
     location.reload();
 })
-
 
 /*  Cria todos os cards no tabuleiro  */
 for(let c = 0; c < cardsMemory.length; c++){
@@ -70,7 +69,7 @@ function comparaCards() {
         pontos -= 2;
       };
 }
-    
+
 /* Reseta o array dos cards abertos e os cards clicados */
 function reset(){
       cardsAbertos = [];
@@ -95,7 +94,7 @@ function desviraCards() {
       congelatabuleiro = true;
       setTimeout(function() {
         primeiroCard.classList.remove("animated", "tada", "open", "show");
-        segundoCard.classList.remove("animated", "tada", "open", "show"); 
+        segundoCard.classList.remove("animated", "tada", "open", "show");
         congelatabuleiro = false;
         reset()},
         900)
