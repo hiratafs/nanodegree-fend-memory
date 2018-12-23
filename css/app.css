@@ -111,19 +111,6 @@ h1 {
     background-color: #1a66ff;
 }
 
-.score-panel .play {
-    float: right;
-    cursor: pointer;
-    color: white;
-    background-color: #009999;
-    padding: 10px 30px;
-    border-radius: 5px;
-    margin: 30px 5px;
-}
-
-.score-panel .play:hover {
-    background-color: #006666;
-}
 
 @media screen and (min-width: 320px) {
   h1 {
