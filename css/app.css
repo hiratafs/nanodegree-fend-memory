@@ -93,7 +93,6 @@ h1 {
 
 .score-panel .dados-jogo {
     float: left;
-    background: ;
     font-size: 20px;
     margin-right: 10px;
 }
@@ -126,29 +125,47 @@ h1 {
     background-color: #006666;
 }
 
-@media screen and (max-width: 340px) {
+@media screen and (min-width: 320px) {
+  h1 {
+     font-size: 1.4em;
+  }
     .deck {
-    width: 320px;
-    min-height: 400px;
-    padding: 25px;
+      width: 90%;
+      min-height: 90%;
+      padding: 20px;
 }
-    
+
     .deck .card {
+      width: 55px;
+      height: 55px;
+      margin-bottom: 2%;
+    }
+
+    .score-panel {
+      width: 300px;
+      margin: 2% auto;
+    }
+
+    .score-panel .dados-jogo {
+      font-size: 0.8em;
+      margin-left: 10%;
+    }
+
+    .score-panel .restart{
+      font-size: 1em;
+      padding: 5px;
+      margin: 2% 10%;
+      align-items: center;
+    }
+}
+
+@media screen and (min-width: 321px) and (max-width: 350px) {
+  .deck {
+    width:90%
+    height:60%;
+  }
+  .deck .card{
     width: 60px;
     height: 60px;
-    }
-    
-    .score-panel {
-        width: 340px;
-        margin: 0 auto;
-    }
-     
-    .score-panel .dados-jogo {
-        font-size: 16px;
-        margin-left: 20px;
-    }
-    
-    .score-panel .restart{
-        margin-right: 20px;
-    }
+  }
 }
