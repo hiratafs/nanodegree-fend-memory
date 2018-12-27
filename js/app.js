@@ -23,45 +23,56 @@ let segundos = 0;
 let minutos = 0;
 let contaSegundos = 0;
 let contaMinutos = 0;
+const iniciaJogo = false;
+const modal = document.getElementById("exampleModalCenter");
+let trigger = false;
+let cronometro = setInterval(contador, 1000);
+
+novoJogo();
 
 restartButton.addEventListener("click", function(){
     location.reload();
 })
 
+
 /*  Cria todos os cards no tabuleiro  */
+function novoJogo() {
 for(let c = 0; c < cardsMemory.length; c++){
-      novaCarta = document.createElement("li");
-      novaCarta.classList.add("card");
-      novaCarta.innerHTML = "<i class='" + cardsMemory[c] + "'></i>";
-      mesaCards.appendChild(novaCarta);
-/* Ouvinte de evento para virar o card */
-novaCarta.addEventListener("click", virarCard);
+          novaCarta = document.createElement("li");
+          novaCarta.classList.add("card");
+          novaCarta.innerHTML = "<i class='" + cardsMemory[c] + "'></i>";
+          mesaCards.appendChild(novaCarta);
+    /* Ouvinte de evento para virar o card */
+    novaCarta.addEventListener("click", virarCard);
+    }
 }
 
-
-if(paresCertos.length === 8){
-    console.log("OK!")
+if(paresCertos.length === 8) {
+    body.classList.add("modal-open");
+    modal.classList.add("modal-backdrop fade show");
 }
+
 
 /* Função para cronometrar tempo */
 function contador() {
     segundos++;
-    if(segundos/60 === 1){
-        segundos = 0;
-        minutos++;
-    }
     
-    if(segundos < 10) {
-        contaSegundos = "0" + segundos.toString();
-    } else {
-        contaSegundos = segundos;
-    }
-    
-    if(minutos < 10) {
-        contaMinutos = "0" + minutos.toString();
-    } else {
-        contaMinutos = minutos;
-    }
+        if(segundos/60 === 1){
+            segundos = 0;
+            minutos++;
+        }
+
+        if(segundos < 10) {
+            contaSegundos = "0" + segundos.toString();
+        } else {
+            contaSegundos = segundos;
+        }
+
+        if(minutos < 10) {
+            contaMinutos = "0" + minutos.toString();
+        } else {
+            contaMinutos = minutos;
+        }
     
     document.getElementById("cronometro").innerHTML = `${contaMinutos}:${contaSegundos}`;
 }
@@ -70,6 +81,11 @@ function contador() {
 
 /* Função para virar o card */
 function virarCard() {
+    
+    if(trigger) {
+        cronometro;
+        trigger = false;
+    }
     if(congelatabuleiro) {
     return
   };
@@ -142,6 +158,7 @@ function contaMovimentos() {
         placar.innerHTML = `${clickmoves} `
         jogadasErradas.innerHTML = `${paresErrados.length} `
         pontuacao.innerHTML = `${pontos} `
+        
 }
 
 
