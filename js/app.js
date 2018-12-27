@@ -10,6 +10,7 @@ let primeiroCard, segundoCard;
 let todosCards = document.querySelectorAll(".cards");
 let cardsAbertos = [];
 let paresErrados = [];
+let paresCertos = [];
 const restartButton = document.querySelector(".restart");
 let placar = document.querySelector(".moves");
 let novaCarta;
@@ -18,6 +19,10 @@ let clickmoves = 0;
 let pontos = 0;
 let jogadasErradas = document.querySelector(".jogadas-erradas")
 let pontuacao = document.querySelector(".pontos");
+let segundos = 0;
+let minutos = 0;
+let contaSegundos = 0;
+let contaMinutos = 0;
 
 restartButton.addEventListener("click", function(){
     location.reload();
@@ -32,6 +37,35 @@ for(let c = 0; c < cardsMemory.length; c++){
 /* Ouvinte de evento para virar o card */
 novaCarta.addEventListener("click", virarCard);
 }
+
+
+if(paresCertos.length === 8){
+    console.log("OK!")
+}
+
+/* Função para cronometrar tempo */
+function contador() {
+    segundos++;
+    if(segundos/60 === 1){
+        segundos = 0;
+        minutos++;
+    }
+    
+    if(segundos < 10) {
+        contaSegundos = "0" + segundos.toString();
+    } else {
+        contaSegundos = segundos;
+    }
+    
+    if(minutos < 10) {
+        contaMinutos = "0" + minutos.toString();
+    } else {
+        contaMinutos = minutos;
+    }
+    
+    document.getElementById("cronometro").innerHTML = `${contaMinutos}:${contaSegundos}`;
+}
+
 
 
 /* Função para virar o card */
@@ -52,14 +86,15 @@ function virarCard() {
         cardsAbertos.push(this);
         comparaCards();
         contaMovimentos();
-    }
-
+}
+ 
 }
 
 
 /* função para comparar os cards */
 function comparaCards() {
       if(segundoCard.innerHTML === primeiroCard.innerHTML){
+        paresCertos.push("par-certo")
         congelaCards();
         pontos += 5;
 
