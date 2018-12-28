@@ -18,6 +18,8 @@ let clickmoves = 0;
 let pontos = 0;
 let jogadasErradas = document.querySelector(".jogadas-erradas")
 let pontuacao = document.querySelector(".pontos");
+const body = document.querySelector("body");
+let modal = document.querySelector("#modalJogo");
 
 
 /* Variáveis para a contagem do tempo */
@@ -167,6 +169,13 @@ function contaMovimentos() {
         
         if(paresCertos.length === 8) {
             ligarCronometro();
+            body.classList.add("modal-open");
+            let novaDiv = document.createElement("div");
+            novaDiv.classList.add("modal-backdrop", "fade", "show");
+            body.appendChild(novaDiv);
+            modal.classList.add("show");
+            modal.setAttribute("style", "display: block");
+            modal.setAttribute("aria-modal", "true");
         }
 }
 
