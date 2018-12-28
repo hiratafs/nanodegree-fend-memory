@@ -1,6 +1,5 @@
 /*  Array com todas as figuras do jogo */
-const cardsMemory = ["fa fa-diamond", "fa fa-diamond", "fa fa-paper-plane-o", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-anchor", "fa fa-bolt", "fa fa-bolt","fa fa-cube", "fa fa-cube", "fa fa-leaf",
-                     "fa fa-leaf", "fa fa-bicycle", "fa fa-bicycle", "fa fa-bomb", "fa fa-bomb"];
+const cardsMemory = ["fa fa-diamond", "fa fa-diamond", "fa fa-paper-plane-o", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-anchor", "fa fa-bolt", "fa fa-bolt","fa fa-cube", "fa fa-cube", "fa fa-leaf","fa fa-leaf", "fa fa-bicycle", "fa fa-bicycle", "fa fa-bomb", "fa fa-bomb"];
 
 
 shuffle(cardsMemory);
@@ -19,17 +18,20 @@ let clickmoves = 0;
 let pontos = 0;
 let jogadasErradas = document.querySelector(".jogadas-erradas")
 let pontuacao = document.querySelector(".pontos");
+
+
+/* Variáveis para a contagem do tempo */
 let segundos = 0;
 let minutos = 0;
 let contaSegundos = 0;
 let contaMinutos = 0;
-const iniciaJogo = false;
-const modal = document.getElementById("exampleModalCenter");
-let trigger = false;
-let cronometro = setInterval(contador, 1000);
+let statusTempo = "parado";
+let tempo = null;
+let comecarJogo = 0;
 
 novoJogo();
 
+/*Botão de restart */
 restartButton.addEventListener("click", function(){
     location.reload();
 })
@@ -47,48 +49,53 @@ for(let c = 0; c < cardsMemory.length; c++){
     }
 }
 
-if(paresCertos.length === 8) {
-    body.classList.add("modal-open");
-    modal.classList.add("modal-backdrop fade show");
-}
+/* Modal */
 
 
 /* Função para cronometrar tempo */
 function contador() {
     segundos++;
-    
-        if(segundos/60 === 1){
-            segundos = 0;
-            minutos++;
-        }
+    if(segundos/60 === 1){
+        segundos = 0;
+        minutos++;
+    }
 
-        if(segundos < 10) {
-            contaSegundos = "0" + segundos.toString();
-        } else {
-            contaSegundos = segundos;
-        }
+    if(segundos < 10) {
+        contaSegundos = "0" + segundos.toString();
+    } else {
+        contaSegundos = segundos;
+    }
 
-        if(minutos < 10) {
-            contaMinutos = "0" + minutos.toString();
-        } else {
-            contaMinutos = minutos;
-        }
-    
-    document.getElementById("cronometro").innerHTML = `${contaMinutos}:${contaSegundos}`;
+    if(minutos < 10) {
+        contaMinutos = "0" + minutos.toString();
+    } else {
+        contaMinutos = minutos;
+    }
+
+document.getElementById("cronometro").innerHTML = `${contaMinutos}:${contaSegundos}`;
 }
 
+/* Faz o cronômetro funcionar */
+function ligarCronometro() {
+ if(statusTempo === "parado"){
+     tempo = window.setInterval(contador, 1000);
+     statusTempo = "correndo";
+ } else {
+     window.clearInterval(tempo);
+     statusTempo = "parado";
+ }
+}
 
 
 /* Função para virar o card */
 function virarCard() {
-    
-    if(trigger) {
-        cronometro;
-        trigger = false;
+     if(comecarJogo === 0){
+       ligarCronometro();
+       comecarJogo++;
     }
     if(congelatabuleiro) {
-    return
-  };
+        return
+    };
     if(this === primeiroCard) {
         return;
     }
@@ -102,8 +109,7 @@ function virarCard() {
         cardsAbertos.push(this);
         comparaCards();
         contaMovimentos();
-}
- 
+    }
 }
 
 
@@ -159,6 +165,9 @@ function contaMovimentos() {
         jogadasErradas.innerHTML = `${paresErrados.length} `
         pontuacao.innerHTML = `${pontos} `
         
+        if(paresCertos.length === 8) {
+            ligarCronometro();
+        }
 }
 
 
