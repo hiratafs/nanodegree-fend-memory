@@ -1,8 +1,11 @@
+"use strict"
+
 /*  Array com todas as figuras do jogo */
-const cardsMemory = ["fa fa-diamond", "fa fa-diamond", "fa fa-paper-plane-o", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-anchor", "fa fa-bolt", "fa fa-bolt","fa fa-cube", "fa fa-cube", "fa fa-leaf","fa fa-leaf", "fa fa-bicycle", "fa fa-bicycle", "fa fa-bomb", "fa fa-bomb"];
+let cardsMemory = ["fa fa-diamond", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-bolt", "fa fa-cube", "fa fa-leaf", "fa fa-bicycle", "fa fa-bomb"];
+let newDeck = [...cardsMemory, ...cardsMemory]
 
 
-shuffle(cardsMemory);
+shuffle(newDeck);
 const mesaCards = document.querySelector(".deck");
 let congelatabuleiro = false;
 let primeiroCard, segundoCard;
@@ -27,9 +30,16 @@ let segundos = 0;
 let minutos = 0;
 let contaSegundos = 0;
 let contaMinutos = 0;
+let cronometro = document.getElementById("cronometro");
 let statusTempo = "parado";
 let tempo = null;
 let comecarJogo = 0;
+
+/*Variáveis para o modal */
+let msgFinal = document.querySelector(".mensagem-final");
+let ptsFinal = document.querySelector(".pontosfinal");
+let tmpTotal = document.querySelector(".tempo-total")
+
 
 novoJogo();
 
@@ -41,10 +51,10 @@ restartButton.addEventListener("click", function(){
 
 /*  Cria todos os cards no tabuleiro  */
 function novoJogo() {
-for(let c = 0; c < cardsMemory.length; c++){
+for(let c = 0; c < newDeck.length; c++){
           novaCarta = document.createElement("li");
           novaCarta.classList.add("card");
-          novaCarta.innerHTML = "<i class='" + cardsMemory[c] + "'></i>";
+          novaCarta.innerHTML = "<i class='" + newDeck[c] + "'></i>";
           mesaCards.appendChild(novaCarta);
     /* Ouvinte de evento para virar o card */
     novaCarta.addEventListener("click", virarCard);
@@ -74,7 +84,7 @@ function contador() {
         contaMinutos = minutos;
     }
 
-document.getElementById("cronometro").innerHTML = `${contaMinutos}:${contaSegundos}`;
+cronometro.innerHTML = `${contaMinutos}:${contaSegundos}`;
 }
 
 /* Faz o cronômetro funcionar */
@@ -166,7 +176,9 @@ function contaMovimentos() {
         placar.innerHTML = `${clickmoves} `
         jogadasErradas.innerHTML = `${paresErrados.length} `
         pontuacao.innerHTML = `${pontos} `
-        
+        msgFinal.innerHTML = `${clickmoves}`;
+        ptsFinal.innerHTML = `${pontos}`;
+        //tmpTotal.innerHTML = ;
         if(paresCertos.length === 8) {
             ligarCronometro();
             body.classList.add("modal-open");
