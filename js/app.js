@@ -13,7 +13,6 @@ let todosCards = document.querySelectorAll(".cards");
 let cardsAbertos = [];
 let paresErrados = [];
 let paresCertos = [];
-const restartButton = document.querySelector(".restart");
 let placar = document.querySelector(".moves");
 let novaCarta;
 let cliquesDados = document.querySelector(".cliquesdados");
@@ -39,12 +38,23 @@ let comecarJogo = 0;
 let msgFinal = document.querySelector(".mensagem-final");
 let ptsFinal = document.querySelector(".pontosfinal");
 let tmpTotal = document.querySelector(".tempo-total")
+<<<<<<< HEAD
+let joganovamente = document.querySelector("#joganovamente");
+let novaDiv = document.createElement("div");
+let fechar = document.querySelector("#fechamodal");
+let stars = document.querySelector(".stars");
+=======
 
+>>>>>>> 973fc2e070a7a062b5cbbe8e265dab7ffb9ecbb9
 
 novoJogo();
 
 /*Botão de restart */
+<<<<<<< HEAD
+joganovamente.addEventListener("click", function(){
+=======
 restartButton.addEventListener("click", function(){
+>>>>>>> 973fc2e070a7a062b5cbbe8e265dab7ffb9ecbb9
     location.reload();
 })
 
@@ -95,6 +105,10 @@ function ligarCronometro() {
  } else {
      window.clearInterval(tempo);
      statusTempo = "parado";
+<<<<<<< HEAD
+     tmpTotal.innerHTML = `${contaMinutos}:${contaSegundos}`;
+=======
+>>>>>>> 973fc2e070a7a062b5cbbe8e265dab7ffb9ecbb9
  }
 }
 
@@ -131,7 +145,6 @@ function comparaCards() {
         paresCertos.push("par-certo")
         congelaCards();
         pontos += 5;
-
       } else {
         paresErrados.push("par-errado");
         desviraCards();
@@ -175,9 +188,19 @@ function contaMovimentos() {
         clickmoves +=1;
         placar.innerHTML = `${clickmoves} `
         jogadasErradas.innerHTML = `${paresErrados.length} `
+        placarFinal();
+        //tmpTotal.innerHTML = ;
+        paraCronometro();
+        }
+
+/* Função para mostrar o placar no modal */
+function placarFinal() {
         pontuacao.innerHTML = `${pontos} `
         msgFinal.innerHTML = `${clickmoves}`;
         ptsFinal.innerHTML = `${pontos}`;
+<<<<<<< HEAD
+        rating();
+=======
         //tmpTotal.innerHTML = ;
         if(paresCertos.length === 8) {
             ligarCronometro();
@@ -189,10 +212,43 @@ function contaMovimentos() {
             modal.setAttribute("style", "display: block");
             modal.setAttribute("aria-modal", "true");
         }
+>>>>>>> 973fc2e070a7a062b5cbbe8e265dab7ffb9ecbb9
 }
 
+function rating() {
+    if(pontos <= 40 && pontos > 34){
+      stars.innerHTML = "<i class='fa fa-star'></i><i class='fa fa-star'></i><i class='fa fa-star></i>";
+    } else if(pontos <= 34 && pontos > 28) {
+      stars.innerHTML = "<i class='fa fa-star'></i><i class='fa fa-star'></i>";
+    } else {
+      stars.innerHTML = "<i class='fa fa-star'></i>";
+    }
+}
 
+/* Função para parar o cronômetro e mostrar modal */
+function paraCronometro() {
+    if(paresCertos.length === 8) {
+        ligarCronometro();
+        body.classList.add("modal-open");
+        novaDiv.classList.add("modal-backdrop", "fade", "show");
+        body.appendChild(novaDiv);
+        modal.classList.add("show");
+        modal.setAttribute("style", "display: block");
+        modal.setAttribute("aria-modal", "true");
+    }
+}
 
+/* Função para fechar o modal */
+function fechaModal() {
+    body.classList.remove("modal-open");
+    body.removeChild(novaDiv);
+    modal.classList.remove("show");
+    moda.removeAttribute("style", "display:block");
+    modal.removeAttribute("aria-modal", "true");
+}
+
+/* Ouvinte de eventos para o botão de fechar modal */
+fechar.addEventListener("click", fechaModal);
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -205,6 +261,5 @@ function shuffle(array) {
         array[currentIndex] = array[randomIndex];
         array[randomIndex] = temporaryValue;
     }
-
     return array;
 }
