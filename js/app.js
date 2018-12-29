@@ -38,23 +38,16 @@ let comecarJogo = 0;
 let msgFinal = document.querySelector(".mensagem-final");
 let ptsFinal = document.querySelector(".pontosfinal");
 let tmpTotal = document.querySelector(".tempo-total")
-<<<<<<< HEAD
 let joganovamente = document.querySelector("#joganovamente");
 let novaDiv = document.createElement("div");
 let fechar = document.querySelector("#fechamodal");
 let stars = document.querySelector(".stars");
-=======
 
->>>>>>> 973fc2e070a7a062b5cbbe8e265dab7ffb9ecbb9
 
 novoJogo();
 
 /*Botão de restart */
-<<<<<<< HEAD
 joganovamente.addEventListener("click", function(){
-=======
-restartButton.addEventListener("click", function(){
->>>>>>> 973fc2e070a7a062b5cbbe8e265dab7ffb9ecbb9
     location.reload();
 })
 
@@ -70,8 +63,6 @@ for(let c = 0; c < newDeck.length; c++){
     novaCarta.addEventListener("click", virarCard);
     }
 }
-
-/* Modal */
 
 
 /* Função para cronometrar tempo */
@@ -93,7 +84,6 @@ function contador() {
     } else {
         contaMinutos = minutos;
     }
-
 cronometro.innerHTML = `${contaMinutos}:${contaSegundos}`;
 }
 
@@ -105,10 +95,7 @@ function ligarCronometro() {
  } else {
      window.clearInterval(tempo);
      statusTempo = "parado";
-<<<<<<< HEAD
      tmpTotal.innerHTML = `${contaMinutos}:${contaSegundos}`;
-=======
->>>>>>> 973fc2e070a7a062b5cbbe8e265dab7ffb9ecbb9
  }
 }
 
@@ -198,21 +185,7 @@ function placarFinal() {
         pontuacao.innerHTML = `${pontos} `
         msgFinal.innerHTML = `${clickmoves}`;
         ptsFinal.innerHTML = `${pontos}`;
-<<<<<<< HEAD
         rating();
-=======
-        //tmpTotal.innerHTML = ;
-        if(paresCertos.length === 8) {
-            ligarCronometro();
-            body.classList.add("modal-open");
-            let novaDiv = document.createElement("div");
-            novaDiv.classList.add("modal-backdrop", "fade", "show");
-            body.appendChild(novaDiv);
-            modal.classList.add("show");
-            modal.setAttribute("style", "display: block");
-            modal.setAttribute("aria-modal", "true");
-        }
->>>>>>> 973fc2e070a7a062b5cbbe8e265dab7ffb9ecbb9
 }
 
 function rating() {
