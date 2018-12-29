@@ -34,13 +34,11 @@ h1 {
     margin-bottom: 20px;
 }
 
-/*
- * Styles for the deck of cards
- */
+/* Styles for the deck of cards */
 
 .deck {
-    width: 660px;
-    height: 680px;
+    width: 620px;
+    height: 600px;
     background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
     padding: 32px;
     border-radius: 10px;
@@ -53,8 +51,8 @@ h1 {
 }
 
 .deck .card {
-    height: 125px;
-    width: 125px;
+    height: 115px;
+    width: 115px;
     background: #2e3d49;
     font-size: 0;
     color: #ffffff;
@@ -82,43 +80,21 @@ h1 {
     font-size: 33px;
 }
 
-/*
- * Styles for the Score Panel
- */
+/* Styles for the Score Panel */
 
 .score-panel {
-    text-align: left;
+    text-align: center;
     width: 500px;
-    margin-bottom: 10px;
+    margin: 10px auto;
+    font-size: 18px;
 }
-
-.score-panel .dados-jogo {
-    float: left;
-    font-size: 20px;
-    margin-right: 10px;
-}
-
-.score-panel .restart {
-    float: right;
-    cursor: pointer;
-    color: white;
-    background-color: #6699ff;
-    padding: 10px 15px;
-    border-radius: 5px;
-    margin: 30px 5px;
-}
-
-.score-panel .restart:hover {
-    background-color: #1a66ff;
-}
-
 
 /* Media queries */
-
 @media screen and (max-width: 350px) {
 
 h1 {
     font-size: 1.4em;
+    margin-bottom: 20px;
 }
 
 .deck {
@@ -133,11 +109,11 @@ h1 {
     margin-bottom: 2px;
 
 }
-    
+
 .deck .card.show {
     font-size: 22px;
 }
-    
+
 .deck .card.match {
     font-size: 22px;
 }
@@ -152,7 +128,7 @@ h1 {
     width: 50%;
     font-size: 0.8em;
 }
-    
+
 .score-panel .restart {
     font-size: 0.8em;
     float: right;
@@ -161,14 +137,14 @@ h1 {
 }
 }
 
-@media screen and (min-width: 351px) and (max-width: 660px) {
 
+@media screen and (min-width: 351px) and (max-width: 660px) {
 h1 {
     font-size: 1.4em;
 }
 
 .deck {
-    width: 80%;
+    width: 70%;
     height: 400px;
     padding: 5%;
 }
@@ -178,11 +154,11 @@ h1 {
     height: 20%;
     margin-bottom: 2px;
 }
-    
+
 .deck .card.show {
     font-size: 22px;
 }
-    
+
 .deck .card.match {
     font-size: 22px;
 }
@@ -197,7 +173,7 @@ h1 {
     width: 50%;
     font-size: 1em;
 }
-    
+
 .score-panel .restart {
     float: right;
     padding: 5px 5px;
